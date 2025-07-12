@@ -1,8 +1,8 @@
 //! Delays
 use core::cmp;
 use cortex_m::peripheral::{syst::SystClkSource, SYST};
+use embedded_hal_02::blocking::delay::{DelayMs, DelayUs};
 use fugit::ExtU32;
-use hal::blocking::delay::{DelayMs, DelayUs};
 
 use crate::rcc::*;
 use crate::stm32::*;

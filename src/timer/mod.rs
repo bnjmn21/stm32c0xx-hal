@@ -5,7 +5,7 @@ use crate::time::{Hertz, MicroSecond};
 use core::marker::PhantomData;
 use cortex_m::peripheral::syst::SystClkSource;
 use cortex_m::peripheral::SYST;
-use hal::timer::{CountDown, Periodic};
+use embedded_hal_02::timer::{CountDown, Periodic};
 use void::Void;
 
 pub mod delay;

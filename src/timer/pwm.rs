@@ -143,7 +143,7 @@ macro_rules! pwm_hal {
         ($CH:ty, $ccxe:ident, $ccmrx_output:ident, $ocxpe:ident, $ocxm:ident, $ccrx:ident, $ccrx_l:ident, $ccrx_h:ident),)+
     ) => {
         $(
-            impl hal::PwmPin for PwmPin<$TIMX, $CH> {
+            impl embedded_hal_02::PwmPin for PwmPin<$TIMX, $CH> {
                 type Duty = u32;
 
                 fn disable(&mut self) {
@@ -188,7 +188,7 @@ macro_rules! pwm_advanced_hal {
     ) ,)+
     ) => {
         $(
-            impl hal::PwmPin for PwmPin<$TIMX, $CH> {
+            impl embedded_hal_02::PwmPin for PwmPin<$TIMX, $CH> {
                 type Duty = u16;
 
                 fn disable(&mut self) {

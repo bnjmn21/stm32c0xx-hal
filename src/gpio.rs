@@ -1,10 +1,10 @@
 //! General Purpose Input / Output
 use core::marker::PhantomData;
 
+use embedded_hal_02::digital::v2::{toggleable, InputPin, OutputPin, StatefulOutputPin};
+
 use crate::rcc::Rcc;
 use core::convert::Infallible;
-use embedded_hal::digital::v2::PinState;
-use hal::digital::v2::{toggleable, InputPin, OutputPin, StatefulOutputPin};
 
 /// Default pin mode
 pub type DefaultMode = Analog;
@@ -198,7 +198,7 @@ macro_rules! gpio {
         pub mod $gpiox {
             use core::convert::Infallible;
             use core::marker::PhantomData;
-            use hal::digital::v2::{toggleable, InputPin, OutputPin, StatefulOutputPin};
+            use embedded_hal_02::digital::v2::{toggleable, InputPin, OutputPin, StatefulOutputPin, PinState};
             use crate::stm32::{EXTI, $GPIOX};
             use crate::exti::{ExtiExt, Event};
             use crate::rcc::{Enable, Rcc};

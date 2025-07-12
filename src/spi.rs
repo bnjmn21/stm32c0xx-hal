@@ -3,7 +3,7 @@ use crate::rcc::*;
 use crate::stm32::SPI1;
 use crate::time::Hertz;
 use core::ptr;
-pub use hal::spi::{Mode, Phase, Polarity, MODE_0, MODE_1, MODE_2, MODE_3};
+pub use embedded_hal_02::spi::{Mode, Phase, Polarity, MODE_0, MODE_1, MODE_2, MODE_3};
 
 /// SPI error
 #[derive(Debug)]
@@ -229,7 +229,7 @@ macro_rules! spi {
             }
         }
 
-        impl<PINS> hal::spi::FullDuplex<u8> for Spi<$SPIX, PINS> {
+        impl<PINS> ::embedded_hal_02::spi::FullDuplex<u8> for Spi<$SPIX, PINS> {
             type Error = Error;
 
             fn read(&mut self) -> nb::Result<u8, Error> {
@@ -272,9 +272,9 @@ macro_rules! spi {
             }
         }
 
-        impl<PINS> ::hal::blocking::spi::transfer::Default<u8> for Spi<$SPIX, PINS> {}
+        impl<PINS> ::embedded_hal_02::blocking::spi::transfer::Default<u8> for Spi<$SPIX, PINS> {}
 
-        impl<PINS> ::hal::blocking::spi::write::Default<u8> for Spi<$SPIX, PINS> {}
+        impl<PINS> ::embedded_hal_02::blocking::spi::write::Default<u8> for Spi<$SPIX, PINS> {}
     }
 }
 

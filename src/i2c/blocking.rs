@@ -4,7 +4,7 @@ use crate::i2c::config::Config;
 use crate::i2c::{self, Error, I2c, I2cDirection, I2cExt, SCLPin, SDAPin};
 use crate::rcc::*;
 use crate::stm32::I2C1;
-use hal::blocking::i2c::{Read, Write, WriteRead};
+use embedded_hal_02::blocking::i2c::{Read, Write, WriteRead};
 
 #[cfg(feature = "stm32c071")]
 use crate::stm32::I2C2;

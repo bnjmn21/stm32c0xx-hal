@@ -2,12 +2,12 @@ use core::fmt;
 use core::marker::PhantomData;
 
 use crate::gpio::{AltFunction, *};
-use crate::prelude::*;
 use crate::rcc::*;
 use crate::serial;
 use crate::serial::config::*;
 use crate::stm32::*;
 
+use embedded_hal_02::serial::Write as _;
 use nb::block;
 
 /// Serial error
@@ -181,7 +181,7 @@ pub trait SerialExt<USART> {
 
 impl<USART> fmt::Write for Serial<USART>
 where
-    Serial<USART>: hal::serial::Write<u8>,
+    Serial<USART>: embedded_hal_02::serial::Write<u8>,
 {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         let _ = s
@@ -195,7 +195,7 @@ where
 
 impl<USART> fmt::Write for Tx<USART>
 where
-    Tx<USART>: hal::serial::Write<u8>,
+    Tx<USART>: embedded_hal_02::serial::Write<u8>,
 {
     fn write_str(&mut self, s: &str) -> fmt::Result {
         let _ = s
@@ -268,7 +268,7 @@ macro_rules! uart_shared {
             }
         }
 
-        impl hal::serial::Read<u8> for Rx<$USARTX> {
+        impl embedded_hal_02::serial::Read<u8> for Rx<$USARTX> {
             type Error = Error;
 
             fn read(&mut self) -> nb::Result<u8, Error> {
@@ -297,7 +297,7 @@ macro_rules! uart_shared {
             }
         }
 
-        impl hal::serial::Read<u8> for Serial<$USARTX> {
+        impl embedded_hal_02::serial::Read<u8> for Serial<$USARTX> {
             type Error = Error;
 
             fn read(&mut self) -> nb::Result<u8, Error> {
@@ -325,7 +325,7 @@ macro_rules! uart_shared {
             }
         }
 
-        impl hal::serial::Write<u8> for Tx<$USARTX> {
+        impl embedded_hal_02::serial::Write<u8> for Tx<$USARTX> {
             type Error = Error;
 
             fn flush(&mut self) -> nb::Result<(), Self::Error> {
@@ -348,7 +348,7 @@ macro_rules! uart_shared {
             }
         }
 
-        impl hal::serial::Write<u8> for Serial<$USARTX> {
+        impl embedded_hal_02::serial::Write<u8> for Serial<$USARTX> {
             type Error = Error;
 
             fn flush(&mut self) -> nb::Result<(), Self::Error> {

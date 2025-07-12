@@ -1,6 +1,6 @@
 //! Quadrature Encoder Interface
-use crate::hal::{self, Direction};
 use crate::rcc::*;
+use embedded_hal_02::{self, Direction};
 
 use crate::timer::pins::TimerPin;
 use crate::timer::*;
@@ -79,7 +79,7 @@ macro_rules! qei {
                 }
             }
 
-            impl<PINS> hal::Qei for Qei<$TIMX, PINS> {
+            impl<PINS> embedded_hal_02::Qei for Qei<$TIMX, PINS> {
                 type Count = u16;
 
                 fn count(&self) -> u16 {
@@ -88,9 +88,9 @@ macro_rules! qei {
 
                 fn direction(&self) -> Direction {
                     if self.tim.cr1().read().dir().bit_is_clear() {
-                        hal::Direction::Upcounting
+                        embedded_hal_02::Direction::Upcounting
                     } else {
-                        hal::Direction::Downcounting
+                        embedded_hal_02::Direction::Downcounting
                     }
                 }
             }

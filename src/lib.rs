@@ -4,13 +4,7 @@
 #[cfg(not(feature = "device-selected"))]
 compile_error!("This crate requires one of the following features enabled: stm32c011, stm32c031");
 
-extern crate bare_metal;
-extern crate void;
-
-pub extern crate cortex_m;
-pub extern crate embedded_hal as hal;
-pub extern crate nb;
-pub extern crate stm32c0;
+pub use embedded_hal_02 as hal_02;
 
 pub use nb::block;
 

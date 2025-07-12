@@ -28,7 +28,8 @@ features = ["rt"]
 [dependencies.bare-metal]
 version = "1.0.0"
 
-[dependencies.embedded-hal]
+[dependencies.embedded-hal-02]
+package = "embedded-hal"
 features = ["unproven"]
 version = "0.2.7"
 

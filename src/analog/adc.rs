@@ -4,7 +4,7 @@ use core::ptr;
 use crate::gpio::*;
 use crate::rcc::{Enable, Rcc};
 use crate::stm32::ADC;
-use hal::adc::{Channel, OneShot};
+use embedded_hal_02::adc::{Channel, OneShot};
 
 /// ADC Result Alignment
 #[derive(Eq, PartialEq)]
